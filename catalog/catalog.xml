@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+	<public publicId="-//OASIS//DTD XML Catalogs V1.1//EN" uri="catalog/catalog.dtd" />
+	<system systemId="catalog.dtd" uri="catalog/catalog.dtd" />
+	<uri name="urn:oasis:names:tc:entity:xmlns:xml:catalog" uri="catalog/catalog.xsd" />
+	<system systemId="http://www.oasis-open.org/committees/entity/release/1.1/catalog.xsd" uri="catalog/catalog.xsd" />
+
+	<system systemId="http://www.w3.org/2001/xml.xsd" uri="xml/xml.xsd" />
+	<system systemId="http://www.w3.org/XML/1998/namespace" uri="xml/xml.xsd" />
+	<system systemId="http://www.w3.org/1999/XSL/Transform" uri="xml/transform.xsd" />
+	<public publicId="-//W3C//DTD XMLSCHEMA 200102//EN" uri="xml/XMLSchema.dtd" />
+	<public publicId="datatypes" uri="xml/datatypes.dtd" />
+	<system systemId="http://www.w3.org/2001/XMLSchema-datatypes" uri="xml/XMLSchema-datatypes.xsd" />
+	<system systemId="http://www.w3.org/2001/XInclude" uri="xinclude/xinclude.xsd" />
+	<system systemId="xinclude.mod" uri="xinclude/xinclude.mod" />
+
+	<public publicId="-//W3C//DTD SVG 1.0//EN" uri="svg/svg10.dtd" />
+	<uri name="http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd" uri="svg/svg10.dtd" />
+	<public publicId="-//W3C//DTD SVG 1.1//EN" uri="svg/svg11.dtd" />
+	<uri name="http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" uri="svg/svg11.dtd" />
+
+
+	<!--    MathML    -->
+
+	<nextCatalog catalog="mathml2/catalog.xml" />
+	<nextCatalog catalog="mathml3/catalog.xml" />
+	
+
+
+	<!--    DocBook ISO entity mirrors    -->
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-amsa.ent" uri="docbook4.3/ent/iso-amsa.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-amsb.ent" uri="docbook4.3/ent/iso-amsb.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-amsc.ent" uri="docbook4.3/ent/iso-amsc.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-amsn.ent" uri="docbook4.3/ent/iso-amsn.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-amso.ent" uri="docbook4.3/ent/iso-amso.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-amsr.ent" uri="docbook4.3/ent/iso-amsr.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-box.ent" uri="docbook4.3/ent/iso-box.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-cyr1.ent" uri="docbook4.3/ent/iso-cyr1.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-cyr2.ent" uri="docbook4.3/ent/iso-cyr2.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-dia.ent" uri="docbook4.3/ent/iso-dia.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-grk1.ent" uri="docbook4.3/ent/iso-grk1.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-grk2.ent" uri="docbook4.3/ent/iso-grk2.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-grk3.ent" uri="docbook4.3/ent/iso-grk3.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-grk4.ent" uri="docbook4.3/ent/iso-grk4.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-lat1.ent" uri="docbook4.3/ent/iso-lat1.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-lat2.ent" uri="docbook4.3/ent/iso-lat2.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-num.ent" uri="docbook4.3/ent/iso-num.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-pub.ent" uri="docbook4.3/ent/iso-pub.ent" />
+	<system systemId="http://www.oasis-open.org/docbook/xml/4.3/ent/iso-tech.ent" uri="docbook4.3/ent/iso-tech.ent" />
+
+	<!--    OASIS DITA    -->
+
+	<nextCatalog catalog="dita1.3/catalog.xml" />
+	<nextCatalog catalog="dita1.2/catalog-dita.xml" />
+	<nextCatalog catalog="dita1.2/catalog-dita-xsd.xml" />
+	<nextCatalog catalog="dita-lwdita/catalog-dita.xml" />
+
+	<!-- 
+	<nextCatalog catalog="dita1.1/catalog-dita.xml"/> 	
+	<nextCatalog catalog="dita1.0/catalog-dita.xml"/> 	
+     -->
+
+	<!-- XLInk -->
+
+	<uri name="http://www.w3.org/1999/xlink" uri="xlink/xlink.xsd" />
+
+</catalog>

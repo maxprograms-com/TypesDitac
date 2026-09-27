@@ -1,0 +1,59 @@
+{
+  "name": "typesditac",
+  "version": "1.0.0",
+  "description": "Generates a unified XML document from a DITA map and its topics",
+  "keywords": [
+    "dita",
+    "ditamap",
+    "lwdita",
+    "xdita",
+    "hdita",
+    "mdita",
+    "ditaval",
+    "ditac",
+    "preprocessor",
+    "typescript"
+  ],
+  "license": "MPL-2.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "typesditac": "dist/typesditac.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "copy-catalog": "node -e \"require('node:fs').cpSync('catalog', 'dist/catalog', { recursive: true })\"",
+    "copy-i18n": "node -e \"require('node:fs').cpSync('i18n', 'dist/i18n', { recursive: true })\"",
+    "make-executable": "node -e \"const fs=require('node:fs'); const p='dist/typesditac.js'; if (fs.existsSync(p)) { try { fs.chmodSync(p, 0o755); } catch {} }\"",
+    "build": "npm run clean && tsc && npm run copy-catalog && npm run copy-i18n && npm run make-executable",
+    "prepack": "npm run build"
+  },
+  "author": {
+    "name": "Rodolfo M. Raya",
+    "url": "https://maxprograms.com",
+    "email": "rmraya@maxprograms.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxprograms-com/TypesDitac.git"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.6",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "markdown-it": "^15.0.1",
+    "markdown-it-abbr": "^2.0.0",
+    "markdown-it-ins": "^4.0.0",
+    "parse5": "^8.0.1",
+    "typesbcp47": "^1.26.1",
+    "typesxml": "^2.6.0"
+  }
+}
