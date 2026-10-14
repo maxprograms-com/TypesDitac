@@ -35,7 +35,7 @@ export class DefinitionListExtension {
         if (start >= max || state.sCount[line] - state.blkIndent >= 4) {
             return -1;
         }
-        const marker: number = state.src.charCodeAt(start++);
+        const marker: number | undefined = state.src.codePointAt(start++);
         if (marker !== 0x7E /* ~ */ && marker !== 0x3A /* : */) {
             return -1;
         }
@@ -127,7 +127,7 @@ export class DefinitionListExtension {
                 const max: number = state.eMarks[ddLine];
                 let offset: number = state.sCount[ddLine] + contentStart - (state.bMarks[ddLine] + state.tShift[ddLine]);
                 while (pos < max) {
-                    const ch: number = state.src.charCodeAt(pos);
+                    const ch: number | undefined = state.src.codePointAt(pos);
                     if (ch === 0x09) {
                         offset += 4 - offset % 4;
                     } else if (ch === 0x20) {

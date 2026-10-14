@@ -41,5 +41,6 @@ export class DitaDOMBuilder extends DOMBuilder {
     }
 
     override endCDATA(): void {
+        // do nothing
     }
 }

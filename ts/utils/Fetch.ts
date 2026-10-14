@@ -25,8 +25,10 @@ if (url === undefined) {
     console.error("Missing URL");
     process.exitCode = 1;
 } else {
-    Fetch.run(url).catch((error: unknown): void => {
+    try {
+        await Fetch.run(url);
+    } catch (error: unknown) {
         console.error(error instanceof Error ? error.message : String(error));
         process.exitCode = 1;
-    });
+    }
 }

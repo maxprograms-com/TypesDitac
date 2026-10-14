@@ -35,7 +35,7 @@ export class FootnoteExtension {
     };
 
     static toFootnoteId(text: string): string {
-        const collapsed: string = text.trim().replace(/\s+/g, " ");
+        const collapsed: string = text.trim().replaceAll(/\s+/g, " ");
         let buffer: string = "";
         let lastChar: string = "";
         for (const c of collapsed) {
@@ -58,7 +58,7 @@ export class FootnoteExtension {
     private static parseLabel(src: string, start: number, max: number): number {
         let pos: number = start;
         while (pos < max) {
-            const code: number = src.charCodeAt(pos);
+            const code: number | undefined = src.codePointAt(pos);
             if (code === 0x5D /* ] */) {
                 return pos > start ? pos : -1;
             }
@@ -72,7 +72,7 @@ export class FootnoteExtension {
 
     private static reference(state: StateInline, silent: boolean): boolean {
         const start: number = state.pos;
-        if (state.src.charCodeAt(start) !== 0x5B /* [ */ || state.src.charCodeAt(start + 1) !== 0x5E /* ^ */) {
+        if (state.src.codePointAt(start) !== 0x5B /* [ */ || state.src.codePointAt(start + 1) !== 0x5E /* ^ */) {
             return false;
         }
         const end: number = FootnoteExtension.parseLabel(state.src, start + 2, state.posMax);
@@ -94,11 +94,11 @@ export class FootnoteExtension {
         if (state.sCount[startLine] - state.blkIndent >= 4) {
             return false;
         }
-        if (start + 4 > max || state.src.charCodeAt(start) !== 0x5B /* [ */ || state.src.charCodeAt(start + 1) !== 0x5E /* ^ */) {
+        if (start + 4 > max || state.src.codePointAt(start) !== 0x5B /* [ */ || state.src.codePointAt(start + 1) !== 0x5E /* ^ */) {
             return false;
         }
         const end: number = FootnoteExtension.parseLabel(state.src, start + 2, max);
-        if (end < 0 || state.src.charCodeAt(end + 1) !== 0x3A /* : */) {
+        if (end < 0 || state.src.codePointAt(end + 1) !== 0x3A /* : */) {
             return false;
         }
         if (silent) {
@@ -113,7 +113,7 @@ export class FootnoteExtension {
         const initial: number = state.sCount[startLine] + afterColon - start;
         let offset: number = initial;
         while (pos < max) {
-            const code: number = state.src.charCodeAt(pos);
+            const code: number | undefined = state.src.codePointAt(pos);
             if (code === 0x09) {
                 offset += 4 - offset % 4;
             } else if (code === 0x20) {

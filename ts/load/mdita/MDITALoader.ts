@@ -146,10 +146,10 @@ export class MDITALoader implements DocumentLoader {
     }
 
     private escapeAttribute(value: string): string {
-        return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+        return value.replaceAll(/&/g, "&amp;").replaceAll(/"/g, "&quot;").replaceAll(/</g, "&lt;");
     }
 
     private escapeText(value: string): string {
-        return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        return value.replaceAll(/&/g, "&amp;").replaceAll(/</g, "&lt;").replaceAll(/>/g, "&gt;");
     }
 }

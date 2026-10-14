@@ -65,7 +65,7 @@ export class AdmonitionExtension {
             return true;
         }
 
-        const title: string = match[2] === undefined ? "" : match[2].trim().replace(/\s+/g, " ");
+        const title: string = match[2] === undefined ? "" : match[2].trim().replaceAll(/\s+/g, " ");
         const openToken: Token = state.push("admonition_open", "div", 1);
         openToken.meta = { type: rawType, title: title };
 

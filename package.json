@@ -1,6 +1,6 @@
 {
   "name": "typesditac",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generates a unified XML document from a DITA map and its topics",
   "keywords": [
     "dita",
@@ -45,15 +45,15 @@
     "url": "https://github.com/maxprograms-com/TypesDitac.git"
   },
   "devDependencies": {
-    "@types/node": "^24.13.6",
+    "@types/node": "^24.19.0",
     "typescript": "^6.0.3"
   },
   "dependencies": {
-    "markdown-it": "^15.0.1",
+    "markdown-it": "^15.0.2",
     "markdown-it-abbr": "^2.0.0",
     "markdown-it-ins": "^4.0.0",
     "parse5": "^8.0.1",
-    "typesbcp47": "^1.26.1",
-    "typesxml": "^2.6.0"
+    "typesbcp47": "^1.26.2",
+    "typesxml": "^2.7.0"
   }
 }

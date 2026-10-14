@@ -46,7 +46,7 @@ export class HDITALoader {
     private static expandSelfClosingTags(source: string): string {
         // HTML parsing ignores "/>" on non-void elements and would swallow the content that
         // follows, so "<p/>" is rewritten as an empty "<p></p>".
-        return source.replace(HDITALoader.SELF_CLOSING_TAG, (match: string, name: string, attributes: string): string =>
+        return source.replaceAll(HDITALoader.SELF_CLOSING_TAG, (match: string, name: string, attributes: string): string =>
             HDITALoader.VOID_ELEMENTS.has(name.toLowerCase()) ? match : "<" + name + attributes + "></" + name + ">");
     }
 

@@ -14,7 +14,7 @@ export class DiacriticUtil {
 
     static {
         for (let c: number = 0; c < 0x300; ++c) {
-            DiacriticUtil.diacritics[c] = String.fromCharCode(c);
+            DiacriticUtil.diacritics[c] = String.fromCodePoint(c);
         }
 
         function mapRange(c1: number, c2: number, c: string): void {
@@ -28,7 +28,7 @@ export class DiacriticUtil {
         }
 
         mapRange(0x00C0, 0x00C5, "A");
-        mapChar(0x00C6, String.fromCharCode(0xe6));
+        mapChar(0x00C6, String.fromCodePoint(0xe6));
         mapChar(0x00C7, "C");
         mapRange(0x00C8, 0x00CB, "E");
         mapRange(0x00CC, 0x00CF, "I");
@@ -40,12 +40,12 @@ export class DiacriticUtil {
         mapChar(0x00E7, "c");
         mapRange(0x00E8, 0x00EB, "e");
         mapRange(0x00EC, 0x00EF, "i");
-        mapChar(0x00F0, String.fromCharCode(0xd0));
+        mapChar(0x00F0, String.fromCodePoint(0xd0));
         mapChar(0x00F1, "n");
         mapRange(0x00F2, 0x00F8, "o");
         mapRange(0x00F9, 0x00FC, "u");
         mapChar(0x00FD, "y");
-        mapChar(0x00FE, String.fromCharCode(0x00de));
+        mapChar(0x00FE, String.fromCodePoint(0x00de));
         mapChar(0x00FF, "y");
         mapRange(0x0100, 0x0105, "a");
         mapRange(0x0106, 0x010D, "c");
@@ -54,7 +54,7 @@ export class DiacriticUtil {
         mapRange(0x011C, 0x0123, "g");
         mapRange(0x0124, 0x0127, "h");
         mapRange(0x0128, 0x0131, "i");
-        mapChar(0x0133, String.fromCharCode(0x0132));
+        mapChar(0x0133, String.fromCodePoint(0x0132));
         mapRange(0x0134, 0x0135, "j");
         mapRange(0x0136, 0x0137, "k");
         mapRange(0x0139, 0x0142, "l");
@@ -87,7 +87,7 @@ export class DiacriticUtil {
         mapChar(0x019F, "O");
         mapChar(0x01A0, "O");
         mapChar(0x01A1, "o");
-        mapChar(0x01A3, String.fromCharCode(0x01a2));
+        mapChar(0x01A3, String.fromCodePoint(0x01a2));
         mapChar(0x01A4, "P");
         mapChar(0x01A5, "p");
         mapChar(0x01AB, "t");
@@ -101,9 +101,9 @@ export class DiacriticUtil {
         mapChar(0x01B4, "y");
         mapChar(0x01B5, "Z");
         mapChar(0x01B6, "z");
-        mapChar(0x01B8, String.fromCharCode(0X01B7));
-        mapChar(0x01B9, String.fromCharCode(0x01b7));
-        mapChar(0x01BA, String.fromCharCode(0x01b7));
+        mapChar(0x01B8, String.fromCodePoint(0X01B7));
+        mapChar(0x01B9, String.fromCodePoint(0x01b7));
+        mapChar(0x01BA, String.fromCodePoint(0x01b7));
         mapChar(0x01CD, "A");
         mapChar(0x01CE, "a");
         mapChar(0x01CF, "I");
@@ -116,8 +116,8 @@ export class DiacriticUtil {
         mapChar(0x01DF, "a");
         mapChar(0x01E0, "A");
         mapChar(0x01E1, "a");
-        mapChar(0x01E2, String.fromCharCode(0XC6));
-        mapChar(0x01E3, String.fromCharCode(0xc6));
+        mapChar(0x01E2, String.fromCodePoint(0XC6));
+        mapChar(0x01E3, String.fromCodePoint(0xc6));
         mapChar(0x01E4, "G");
         mapChar(0x01E5, "g");
         mapChar(0x01E6, "G");
@@ -128,16 +128,16 @@ export class DiacriticUtil {
         mapChar(0x01EB, "o");
         mapChar(0x01EC, "O");
         mapChar(0x01ED, "o");
-        mapChar(0x01EE, String.fromCharCode(0X01B7));
-        mapChar(0x01EF, String.fromCharCode(0x01b7));
+        mapChar(0x01EE, String.fromCodePoint(0X01B7));
+        mapChar(0x01EF, String.fromCodePoint(0x01b7));
         mapChar(0x01F0, "j");
-        mapChar(0x01F3, String.fromCharCode(0x01f1));
+        mapChar(0x01F3, String.fromCodePoint(0x01f1));
         mapChar(0x01F4, "G");
         mapChar(0x01F5, "g");
         mapChar(0x01FA, "A");
         mapChar(0x01FB, "a");
-        mapChar(0x01FC, String.fromCharCode(0XC6));
-        mapChar(0x01FD, String.fromCharCode(0xc6));
+        mapChar(0x01FC, String.fromCodePoint(0XC6));
+        mapChar(0x01FD, String.fromCodePoint(0xc6));
         mapChar(0x01FE, "O");
         mapChar(0x01FF, "o");
         mapChar(0x0200, "A");
@@ -215,8 +215,8 @@ export class DiacriticUtil {
         mapChar(0x028F, "Y");
         mapChar(0x0290, "z");
         mapChar(0x0291, "z");
-        mapChar(0x0292, String.fromCharCode(0x01b7));
-        mapChar(0x0293, String.fromCharCode(0x01b7));
+        mapChar(0x0292, String.fromCodePoint(0x01b7));
+        mapChar(0x0293, String.fromCodePoint(0x01b7));
         mapChar(0x0297, "c");
         mapChar(0x0299, "B");
         mapChar(0x029A, "e");
@@ -230,12 +230,12 @@ export class DiacriticUtil {
         if (c.length === 0) {
             return c;
         }
-        const code: number = c.charCodeAt(0);
+        const code: number = c.codePointAt(0) ?? 0;
         if (code >= DiacriticUtil.diacritics.length) {
             return c;
         }
         const tc: string = DiacriticUtil.diacritics[code];
-        return (tc.charCodeAt(0) === 0) ? c : tc;
+        return (tc.codePointAt(0) === 0) ? c : tc;
     }
 
     public static collapse(s: string): string {

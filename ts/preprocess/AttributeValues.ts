@@ -226,7 +226,7 @@ export class AttributeValues {
     ): void {
         const elementName: string = element.getName();
         const location: string = NodeLocation.of(path, element);
-        const tokens: string[] = rawValue.replace(/\(/g, " ( ").replace(/\)/g, " ) ").split(/\s+/).filter(
+        const tokens: string[] = rawValue.replaceAll(/\(/g, " ( ").replaceAll(/\)/g, " ) ").split(/\s+/).filter(
             (value: string): boolean => value.length > 0
         );
         let group: string | undefined;

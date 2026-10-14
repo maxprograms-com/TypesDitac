@@ -19,9 +19,9 @@ export class KeyrefExtension {
     private static keyref(state: StateInline, silent: boolean): boolean {
         const src: string = state.src;
         const max: number = state.posMax;
-        const isImage: boolean = src.charCodeAt(state.pos) === 0x21 /* ! */;
+        const isImage: boolean = src.codePointAt(state.pos) === 0x21 /* ! */;
         const bracket: number = isImage ? state.pos + 1 : state.pos;
-        if (state.linkLevel > 0 || src.charCodeAt(bracket) !== 0x5B /* [ */ || src.charCodeAt(bracket + 1) === 0x5E /* ^ */) {
+        if (state.linkLevel > 0 || src.codePointAt(bracket) !== 0x5B /* [ */ || src.codePointAt(bracket + 1) === 0x5E /* ^ */) {
             return false;
         }
         const labelStart: number = bracket + 1;
@@ -32,10 +32,10 @@ export class KeyrefExtension {
         const label: string = src.slice(labelStart, labelEnd);
         let key: string = label;
         let pos: number = labelEnd + 1;
-        if (pos < max && src.charCodeAt(pos) === 0x28 /* ( */) {
+        if (pos < max && src.codePointAt(pos) === 0x28 /* ( */) {
             return false;
         }
-        if (pos < max && src.charCodeAt(pos) === 0x5B /* [ */) {
+        if (pos < max && src.codePointAt(pos) === 0x5B /* [ */) {
             const refEnd: number = src.indexOf("]", pos + 1);
             const nestedOpen: number = src.indexOf("[", pos + 1);
             if (refEnd >= 0 && refEnd < max && (nestedOpen < 0 || nestedOpen > refEnd)) {

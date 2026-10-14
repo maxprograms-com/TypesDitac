@@ -103,8 +103,6 @@ export class TypesDitacPreprocessor {
     private chunkDocuments: Map<string, XMLDocument> = new Map();
     private listsDocument: XMLDocument | undefined;
     private unifiedDocument: XMLDocument | undefined;
-    private externalAttributeValues: AttributeValues | undefined;
-    private defaultAttributeValues: AttributeValues | undefined;
     private attributeValues: AttributeValues = new AttributeValues();
     private readonly filters: Filters;
     private lang: string | undefined;
@@ -170,22 +168,6 @@ export class TypesDitacPreprocessor {
 
     setLang(lang: string): void {
         this.lang = lang;
-    }
-
-    setAttributeValues(attributeValues: AttributeValues | undefined): void {
-        this.externalAttributeValues = attributeValues;
-    }
-
-    getAttributeValues(): AttributeValues | undefined {
-        return this.externalAttributeValues;
-    }
-
-    setDefaultAttributeValues(attributeValues: AttributeValues | undefined): void {
-        this.defaultAttributeValues = attributeValues;
-    }
-
-    getDefaultAttributeValues(): AttributeValues | undefined {
-        return this.defaultAttributeValues;
     }
 
     setExtendedToc(extendedToc: string): void {
@@ -292,9 +274,6 @@ export class TypesDitacPreprocessor {
         this.filters.setOutputDirectory(this.outDir);
 
         this.attributeValues = new AttributeValues();
-        if (this.externalAttributeValues !== undefined) {
-            this.attributeValues.addValues(this.externalAttributeValues);
-        }
 
         const loader: LoadDocument = this.documents.loader;
         const validating: boolean = this.documents.isValidating();
@@ -314,7 +293,7 @@ export class TypesDitacPreprocessor {
         const keySpaces: KeySpaces = this.keyLoader.load(mapDocument, map.path, loadedDocs);
 
         // Simplify the main map. This also processes it. Afterwards, attribute values are fully initialized.
-        this.mapSimplifier.simplify(mapDocument, map.path, keySpaces, this.attributeValues, this.defaultAttributeValues);
+        this.mapSimplifier.simplify(mapDocument, map.path, keySpaces, this.attributeValues);
         SimplifyTopicrefs.duplicateTopics(mapRoot, this.diagnostics.i18n);
 
         if (externalFilter !== undefined) {

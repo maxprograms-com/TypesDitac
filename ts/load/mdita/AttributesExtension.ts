@@ -26,7 +26,7 @@ export class AttributesExtension {
     };
 
     private static tokenize(state: StateInline, silent: boolean): boolean {
-        if (state.src.charCodeAt(state.pos) !== 0x7B) {
+        if (state.src.codePointAt(state.pos) !== 0x7B) {
             return false;
         }
         const parsed: ParsedAttributes | undefined = AttributesExtension.parse(state.src, state.pos, state.posMax);

@@ -146,10 +146,10 @@ export class DitaUtils {
     static trimControlAndSpace(value: string): string {
         let start: number = 0;
         let end: number = value.length;
-        while (start < end && value.charCodeAt(start) <= 0x20) {
+        while (start < end && (value.codePointAt(start) ?? 0) <= 0x20) {
             start++;
         }
-        while (end > start && value.charCodeAt(end - 1) <= 0x20) {
+        while (end > start && (value.codePointAt(end - 1) ?? 0) <= 0x20) {
             end--;
         }
         return value.substring(start, end);
@@ -468,7 +468,7 @@ export class DitaUtils {
     }
 
     static collapseWhitespace(value: string): string {
-        let result: string = value.replace(/[ \t\r\n]+/g, " ");
+        let result: string = value.replaceAll(/[ \t\r\n]+/g, " ");
         if (result.endsWith(" ")) {
             result = result.substring(0, result.length - 1);
         }

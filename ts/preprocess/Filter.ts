@@ -496,7 +496,7 @@ export class Filter {
             (child: DitaElement): boolean => child.getName() === "alt-text"
         );
         if (altText !== undefined) {
-            const rawText: string = altText.getText().trim().replace(/\s+/g, " ");
+            const rawText: string = altText.getText().trim().replaceAll(/\s+/g, " ");
             text = rawText.length === 0 ? undefined : rawText;
         }
 

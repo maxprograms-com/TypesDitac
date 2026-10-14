@@ -15,7 +15,7 @@
 import { MarkdownItPlugin, RuleInline, Token } from "./MarkdownItTypes.js";
 
 function escapeAttribute(value: string): string {
-    return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+    return value.replaceAll(/&/g, "&amp;").replaceAll(/"/g, "&quot;").replaceAll(/</g, "&lt;");
 }
 
 function mediaRule(kind: "audio" | "video", tag: string): RuleInline {

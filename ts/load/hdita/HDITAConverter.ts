@@ -63,9 +63,9 @@ export class HDITAConverter {
     static checkId(text: string): string {
         const collapsed: string = HtmlSupport.normalizeSpace(text);
         const base: string = collapsed.length === 0 ? "_" : collapsed;
-        const extras: string = String.fromCharCode(0x00B7, 0x203F, 0x2040);
+        const extras: string = String.fromCodePoint(0x00B7, 0x203F, 0x2040);
         const pattern: RegExp = new RegExp("[^\\p{L}\\p{N}\\p{M}_.:" + extras + "-]+", "gu");
-        const sanitized: string = base.replace(pattern, "_");
+        const sanitized: string = base.replaceAll(pattern, "_");
         return /^[\p{L}_:]/u.test(sanitized) ? sanitized : "_" + sanitized;
     }
 

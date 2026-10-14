@@ -114,7 +114,7 @@ export class HtmlSupport {
     }
 
     static normalizeSpace(value: string): string {
-        return value.trim().replace(/\s+/g, " ");
+        return value.trim().replaceAll(/\s+/g, " ");
     }
 
     private static findPath(current: HtmlElement, target: HtmlElement, path: HtmlElement[]): boolean {

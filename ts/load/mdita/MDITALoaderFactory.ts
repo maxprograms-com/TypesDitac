@@ -89,7 +89,7 @@ export class MDITALoaderFactory implements DocumentLoaderFactory {
         // Must run before autolink/html_inline: with html enabled, "<<some text>>" would
         // otherwise be parsed as an inline <some> tag before any text rule sees it.
         md.inline.ruler.before("autolink", "guillemets", (state, silent): boolean => {
-            if (state.src.charCodeAt(state.pos) !== 0x3C || state.src.charCodeAt(state.pos + 1) !== 0x3C) {
+            if (state.src.codePointAt(state.pos) !== 0x3C || state.src.codePointAt(state.pos + 1) !== 0x3C) {
                 return false;
             }
             const match: RegExpExecArray | null = /^<<([^<>]+)>>/.exec(state.src.slice(state.pos, state.posMax));
@@ -111,7 +111,7 @@ export class MDITALoaderFactory implements DocumentLoaderFactory {
                 if (token.type === "inline" && token.children !== null) {
                     for (const child of token.children) {
                         if (child.type === "text") {
-                            child.content = child.content.replace(/\s\.\s\.\s\./g, " …");
+                            child.content = child.content.replaceAll(/\s\.\s\.\s\./g, " …");
                         }
                     }
                 }

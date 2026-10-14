@@ -348,7 +348,7 @@ export class Filters {
 
         if (attrValue.includes("(") &&
             ["audience", "product", "platform", "otherprops"].includes(attrName)) {
-            const tokens: string[] = attrValue.replace(/\(/g, " ( ").replace(/\)/g, " ) ")
+            const tokens: string[] = attrValue.replaceAll(/\(/g, " ( ").replaceAll(/\)/g, " ) ")
                 .split(/\s+/).filter((token: string): boolean => token.length > 0);
             let group: string = attrName;
             for (let index: number = 0; index < tokens.length; index++) {

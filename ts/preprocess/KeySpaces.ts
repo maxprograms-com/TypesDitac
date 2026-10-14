@@ -323,7 +323,7 @@ export class KeySpaces {
     }
 
     private getPseudoAttribute(data: string, name: string): string | undefined {
-        const escapedName: string = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const escapedName: string = name.replaceAll(/[.*+?^${}()|[\]\\]/g, "\\$&");
         const match: RegExpMatchArray | null = data.match(new RegExp("(?:^|\\s)" + escapedName + "=\\\"([^\\\"]*)\\\""));
         return match === null || match[1].trim().length === 0 ? undefined : match[1].trim();
     }

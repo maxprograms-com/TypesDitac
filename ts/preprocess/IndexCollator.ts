@@ -20,7 +20,7 @@ export class IndexCollator {
 
     compare(a: string, b: string): number {
         // Spaces and dashes only matter when the terms are otherwise equal.
-        const delta: number = this.collator.compare(a.replace(IndexCollator.IGNORABLE, ""), b.replace(IndexCollator.IGNORABLE, ""));
+        const delta: number = this.collator.compare(a.replaceAll(IndexCollator.IGNORABLE, ""), b.replaceAll(IndexCollator.IGNORABLE, ""));
         return delta !== 0 ? delta : this.collator.compare(a, b);
     }
 }

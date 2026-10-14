@@ -44,8 +44,7 @@ export class MapSimplifier {
         mapDocument: XMLDocument,
         mapPath: string,
         keySpaces?: KeySpaces,
-        attrValues?: AttributeValues,
-        defaultAttrValues?: AttributeValues
+        attrValues?: AttributeValues
     ): void {
         const root: DitaElement | undefined = DitaUtils.getRoot(mapDocument);
         if (root === undefined) {
@@ -62,10 +61,6 @@ export class MapSimplifier {
         loadedDocs.put(mapPath, mapDocument, true);
 
         this.loadAllMaps(root, mapPath, keySpaceCounter, loadedDocs, attrValues);
-
-        if (attrValues !== undefined && !attrValues.hasAttributes() && defaultAttrValues !== undefined) {
-            attrValues.addValues(defaultAttrValues);
-        }
 
         // From here, attrValues is fully initialized.
         const loadedMaps: LoadedDocument[] = [];
