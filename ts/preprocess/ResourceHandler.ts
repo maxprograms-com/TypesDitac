@@ -54,7 +54,7 @@ export class ResourceHandler {
         this.urlToPath.clear();
     }
 
-    handleResource(resourceURL: string, isImage: boolean, outDir: string): string | undefined {
+    handleResource(resourceURL: string, outDir: string): string | undefined {
         const existing: string | undefined = this.urlToPath.get(resourceURL);
         if (existing !== undefined) {
             return existing;

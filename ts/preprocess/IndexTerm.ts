@@ -55,10 +55,6 @@ export class IndexTerm {
         }
     }
 
-    clearSeeList(): void {
-        this.seeList = undefined;
-    }
-
     getSeeList(): IndexTermRef[] | undefined {
         return this.seeList;
     }
@@ -69,10 +65,6 @@ export class IndexTerm {
         } else {
             this.seeAlsoList.push(seeAlso);
         }
-    }
-
-    clearSeeAlsoList(): void {
-        this.seeAlsoList = undefined;
     }
 
     getSeeAlsoList(): IndexTermRef[] | undefined {

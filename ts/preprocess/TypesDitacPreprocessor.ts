@@ -174,14 +174,6 @@ export class TypesDitacPreprocessor {
         this.unifiedDocumentBuilder.setExtendedToc(extendedToc);
     }
 
-    getLang(): string | undefined {
-        return this.lang;
-    }
-
-    addExtractAsImageSpec(spec: ExtractAsImageSpec): void {
-        this.extractAsImageSpecs.push(spec);
-    }
-
     setExtractAsImage(extract: boolean): void {
         this.extractAsImage = extract;
     }
@@ -199,16 +191,8 @@ export class TypesDitacPreprocessor {
         this.frontMatter = items === undefined || items.length === 0 ? undefined : items;
     }
 
-    getFrontMatter(): string[][] | undefined {
-        return this.frontMatter;
-    }
-
     setBackMatter(items: string[][] | undefined): void {
         this.backMatter = items === undefined || items.length === 0 ? undefined : items;
-    }
-
-    getBackMatter(): string[][] | undefined {
-        return this.backMatter;
     }
 
     setMedia(media: "screen" | "print"): void {
@@ -223,24 +207,8 @@ export class TypesDitacPreprocessor {
         this.chunking = chunking;
     }
 
-    getChunking(): Chunking {
-        return this.chunking;
-    }
-
     setForceTitlePage(force: boolean): void {
         this.forceTitlePage = force;
-    }
-
-    getForceTitlePage(): boolean {
-        return this.forceTitlePage;
-    }
-
-    setPartRestartsChapterNumber(restarts: boolean): void {
-        this.partRestartsChapterNumber = restarts;
-    }
-
-    getPartRestartsChapterNumber(): boolean {
-        return this.partRestartsChapterNumber;
     }
 
     process(mapPath: string, outFile: string, externalFilter?: Filter): XMLDocument {
@@ -377,14 +345,6 @@ export class TypesDitacPreprocessor {
         return buffer;
     }
 
-    getChunkDocuments(): ReadonlyMap<string, XMLDocument> {
-        return this.chunkDocuments;
-    }
-
-    getListsDocument(): XMLDocument | undefined {
-        return this.listsDocument;
-    }
-
     getUnifiedDocument(): XMLDocument | undefined {
         return this.unifiedDocument;
     }
@@ -475,7 +435,7 @@ export class TypesDitacPreprocessor {
                 return;
             }
             if (DitaUtils.hasClass(child, "topic/image")) {
-                this.processResource(child, "href", true, handler, documentPath);
+                this.processResource(child, "href", handler, documentPath);
             } else if (DitaUtils.hasClass(child, "topic/object")) {
                 this.processObjectResources(child, handler, documentPath);
             } else {
@@ -485,17 +445,17 @@ export class TypesDitacPreprocessor {
     }
 
     private processObjectResources(element: DitaElement, handler: ResourceHandler, documentPath: string): void {
-        this.processResource(element, "classid", false, handler, documentPath);
-        this.processResource(element, "data", false, handler, documentPath);
+        this.processResource(element, "classid", handler, documentPath);
+        this.processResource(element, "data", handler, documentPath);
         this.processArchiveResources(element, handler, documentPath);
         for (const parameter of element.getChildren().filter(
             (child: DitaElement): boolean => DitaUtils.hasClass(child, "topic/param")
         )) {
             const name: string | undefined = DitaUtils.getNonEmptyAttribute(parameter, "name");
             if (name === "source" || name === "track") {
-                this.processResource(parameter, "value", false, handler, documentPath);
+                this.processResource(parameter, "value", handler, documentPath);
             } else if (name === "poster") {
-                this.processResource(parameter, "value", true, handler, documentPath);
+                this.processResource(parameter, "value", handler, documentPath);
             }
         }
         this.processResourcesInElement(element, handler, documentPath);
@@ -504,7 +464,6 @@ export class TypesDitacPreprocessor {
     private processResource(
         element: DitaElement,
         attributeName: string,
-        isImage: boolean,
         handler: ResourceHandler,
         documentPath: string
     ): void {
@@ -517,7 +476,7 @@ export class TypesDitacPreprocessor {
         if (href === undefined) {
             return;
         }
-        const resolved: string | undefined = this.tryHandleResource(handler, href, isImage, element, documentPath);
+        const resolved: string | undefined = this.tryHandleResource(handler, href, element, documentPath);
         if (resolved !== undefined && resolved !== href) {
             element.setAttribute(new XMLAttribute(attributeName, resolved));
         }
@@ -540,7 +499,7 @@ export class TypesDitacPreprocessor {
                 resolvedHrefs.push(hrefs[index]);
                 continue;
             }
-            const resolved: string | undefined = this.tryHandleResource(handler, hrefs[index], false, element, documentPath);
+            const resolved: string | undefined = this.tryHandleResource(handler, hrefs[index], element, documentPath);
             if (resolved !== undefined && resolved !== hrefs[index]) {
                 changed = true;
                 resolvedHrefs.push(resolved);
@@ -556,12 +515,11 @@ export class TypesDitacPreprocessor {
     private tryHandleResource(
         handler: ResourceHandler,
         href: string,
-        isImage: boolean,
         element: DitaElement,
         documentPath: string
     ): string | undefined {
         try {
-            return handler.handleResource(href, isImage, this.outDir);
+            return handler.handleResource(href, this.outDir);
         } catch (error: unknown) {
             const message: string = this.diagnostics.i18n.format(
                 this.diagnostics.i18n.getString("Filter", "cannotProcessResource"),

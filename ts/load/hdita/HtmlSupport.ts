@@ -46,15 +46,6 @@ export class HtmlSupport {
         return HtmlSupport.classTokens(element).includes(token);
     }
 
-    static setHtmlAttribute(element: HtmlElement, name: string, value: string): void {
-        const existing: HtmlElement["attrs"][number] | undefined = element.attrs.find((entry) => entry.name === name);
-        if (existing !== undefined) {
-            existing.value = value;
-        } else {
-            element.attrs.push({ name, value });
-        }
-    }
-
     static children(node: HtmlElement | undefined): HtmlNode[] {
         return node === undefined ? [] : node.childNodes;
     }

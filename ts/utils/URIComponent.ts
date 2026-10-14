@@ -118,16 +118,6 @@ export class URIComponent {
         return -1;
     }
 
-    static getRawFragment(location: string): string | undefined {
-        const position: number = location.lastIndexOf("#");
-        return position < 0 ? undefined : location.substring(position + 1);
-    }
-
-    static getFragment(location: string): string | undefined {
-        const fragment: string | undefined = URIComponent.getRawFragment(location);
-        return fragment === undefined ? undefined : URIComponent.decode(fragment);
-    }
-
     static setRawFragment(location: string, fragment: string | undefined): string {
         const position: number = location.lastIndexOf("#");
         if (position < 0) {

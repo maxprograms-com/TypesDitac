@@ -105,10 +105,6 @@ export class ChunkEntry {
         return this.loadedTopic?.element;
     }
 
-    getTargetId(): string | undefined {
-        return this.loadedTopic?.topicId;
-    }
-
     toString(): string {
         const parts: string[] = [this.type];
         if (this.number !== undefined) {

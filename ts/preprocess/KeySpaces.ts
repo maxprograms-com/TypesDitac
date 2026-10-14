@@ -37,16 +37,8 @@ export class KeySpaces {
         this.keySpaces.set(keySpace.id, keySpace);
     }
 
-    getRootKeySpace(): KeySpace {
-        return this.rootKeySpace;
-    }
-
     getKeySpaceById(id: string): KeySpace | undefined {
         return this.keySpaces.get(id);
-    }
-
-    getAllKeySpaces(): KeySpace[] {
-        return [...this.keySpaces.values()];
     }
 
     toString(): string {
@@ -154,16 +146,6 @@ export class KeySpaces {
             }
         }
         return undefined;
-    }
-
-    resolveReference(keySpace: KeySpace, reference: string): { keySpace: KeySpace; key: string; fragment?: string } | undefined {
-        const slashIndex: number = reference.indexOf("/");
-        const key: string = slashIndex < 0 ? reference : reference.slice(0, slashIndex);
-        const fragment: string | undefined = slashIndex < 0 ? undefined : reference.slice(slashIndex + 1);
-        if (!DitaUtils.isValidKey(key) || (fragment !== undefined && !DitaUtils.isValidId(fragment))) {
-            return undefined;
-        }
-        return { keySpace, key, fragment };
     }
 
     get(key: string, context: DitaElement): KeyDefinition | undefined {

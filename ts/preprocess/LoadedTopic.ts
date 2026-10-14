@@ -80,10 +80,6 @@ export class LoadedTopic {
         return this.flags;
     }
 
-    getParentTopic(): LoadedTopic | undefined {
-        return this.parent instanceof LoadedTopic ? this.parent : undefined;
-    }
-
     getAncestorDocument(): LoadedDocument {
         let current: LoadedTopicParent = this.parent;
         while (current instanceof LoadedTopic) {

@@ -95,10 +95,6 @@ export class LoadedDocument {
         return this.topics;
     }
 
-    getTopicCount(): number {
-        return this.getTopics().length;
-    }
-
     getFirstTopic(): LoadedTopic | undefined {
         return this.getTopics()[0];
     }

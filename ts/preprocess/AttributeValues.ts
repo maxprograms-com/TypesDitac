@@ -51,16 +51,6 @@ export class AttributeValues {
 
     private readonly attributes: Map<string, ScopedValues[]> = new Map();
 
-    addValues(other: AttributeValues): void {
-        for (const [attrName, list] of other.attributes) {
-            this.attributes.set(attrName, list.map((scoped: ScopedValues): ScopedValues => ({
-                elementName: scoped.elementName,
-                values: new Map(scoped.values),
-                defaultValue: scoped.defaultValue
-            })));
-        }
-    }
-
     add(root: DitaElement, path: string, documents: LoadedDocuments, diagnostics: DiagnosticLog): boolean {
         const subjects: Map<string, Subject> = new Map();
         const enumerations: Map<string, Enumeration> = new Map();

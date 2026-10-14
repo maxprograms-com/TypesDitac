@@ -195,10 +195,6 @@ export class LoadedDocuments {
         return this.documents.values();
     }
 
-    iterator(): IterableIterator<LoadedDocument> {
-        return this.documents.values();
-    }
-
     private ensureHasValidId(element: DitaElement, documentPath: string): string {
         const id: string | undefined = DitaUtils.getNonEmptyAttribute(element, "id");
         if (id !== undefined && DitaUtils.isValidId(id)) {

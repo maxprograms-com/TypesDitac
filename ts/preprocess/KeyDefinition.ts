@@ -45,10 +45,6 @@ export class KeyDefinition {
         return DitaUtils.resolveDocumentPath(this.basePath, path) + suffix;
     }
 
-    isAbsoluteHref(): boolean {
-        return this.getAttribute("href") !== undefined && this.getAttribute("ditac:absoluteHref") === "true";
-    }
-
     getMeta(): DitaElement | undefined {
         return this.element.getChildren()[0];
     }

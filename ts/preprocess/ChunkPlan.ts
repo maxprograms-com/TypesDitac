@@ -123,7 +123,4 @@ export class ChunkPlan {
         return this.topicChunks.get(topic);
     }
 
-    getTopicChunks(): ReadonlyMap<LoadedTopic, Chunk> {
-        return this.topicChunks;
-    }
 }

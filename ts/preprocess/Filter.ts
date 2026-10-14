@@ -191,10 +191,6 @@ export class Prop {
         return this.values.find((value: PropValue): boolean => value.value === undefined);
     }
 
-    getValueCount(): number {
-        return this.values.length;
-    }
-
     getValues(): readonly PropValue[] {
         return this.values;
     }
@@ -265,10 +261,6 @@ export class Filter {
         return copy;
     }
 
-    setProps(props: Prop[] | undefined): void {
-        this.props = props ?? [];
-    }
-
     addExcludeProps(...pairs: string[]): void {
         let props: Prop[] = this.props;
         for (let i: number = 0; i + 1 < pairs.length; i += 2) {
@@ -283,22 +275,6 @@ export class Filter {
 
     getProps(): readonly Prop[] {
         return this.props;
-    }
-
-    setConflictColor(conflictColor: string | undefined): void {
-        this.conflictColor = conflictColor;
-    }
-
-    getConflictColor(): string | undefined {
-        return this.conflictColor;
-    }
-
-    setConflictBackgroundColor(conflictBackgroundColor: string | undefined): void {
-        this.conflictBackgroundColor = conflictBackgroundColor;
-    }
-
-    getConflictBackgroundColor(): string | undefined {
-        return this.conflictBackgroundColor;
     }
 
     getDocumentRoot(): DitaElement | undefined {

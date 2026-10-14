@@ -52,10 +52,6 @@ export class KeyLoader {
         this.filters = filters;
     }
 
-    getFilters(): Filters | undefined {
-        return this.filters;
-    }
-
     load(mapDocument: XMLDocument, mapPath: string, documents?: LoadedDocuments): KeySpaces {
         this.workingDocuments = documents ?? this.documents;
         const root: DitaElement | undefined = DitaUtils.getRoot(mapDocument);

@@ -238,12 +238,4 @@ export class DiacriticUtil {
         return (tc.codePointAt(0) === 0) ? c : tc;
     }
 
-    public static collapse(s: string): string {
-        const count: number = s.length;
-        let result: string = "";
-        for (let i: number = 0; i < count; ++i) {
-            result += DiacriticUtil.collapseChar(s.charAt(i));
-        }
-        return result;
-    }
 }

@@ -74,16 +74,8 @@ export class Filters {
         this.attributeValues = attributeValues;
     }
 
-    getAttributeValues(): AttributeValues | undefined {
-        return this.attributeValues;
-    }
-
     setExternalFilter(filter: Filter | undefined): void {
         this.externalFilter = filter;
-    }
-
-    getExternalFilter(): Filter | undefined {
-        return this.externalFilter;
     }
 
     private pushFilterFromRef(ditavalref: DitaElement, basePath: string): Filter | undefined {
@@ -534,7 +526,7 @@ export class Filters {
     private flagImagePath(url: string, isAbsolute: boolean): string {
         if (!isAbsolute && this.resourceHandler !== undefined && this.outDir !== undefined) {
             try {
-                const path: string | undefined = this.resourceHandler.handleResource(url, true, this.outDir);
+                const path: string | undefined = this.resourceHandler.handleResource(url, this.outDir);
                 if (path !== undefined) {
                     return path;
                 }

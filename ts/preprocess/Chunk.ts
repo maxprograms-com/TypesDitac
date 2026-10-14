@@ -61,10 +61,6 @@ export class Chunk {
         return false;
     }
 
-    hasEntries(): boolean {
-        return this.entries.length > 0;
-    }
-
     getEntries(): ChunkEntry[] {
         return [...this.entries];
     }

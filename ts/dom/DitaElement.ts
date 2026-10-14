@@ -70,18 +70,6 @@ export class DitaElement extends XMLElement {
         return undefined;
     }
 
-    getPreviousSiblingElement(): DitaElement | undefined {
-        if (this._parent === undefined) {
-            return undefined;
-        }
-        const siblings: DitaElement[] = this._parent.getChildren();
-        const index: number = siblings.indexOf(this);
-        if (index > 0) {
-            return siblings[index - 1];
-        }
-        return undefined;
-    }
-
     isAncestorOf(descendant: DitaElement): boolean {
         let current: DitaElement | undefined = descendant.getParent();
         while (current !== undefined) {
@@ -93,17 +81,4 @@ export class DitaElement extends XMLElement {
         return false;
     }
 
-    computeElementPointer(): string {
-        const segments: number[] = [];
-        let current: DitaElement = this;
-        while (current._parent !== undefined) {
-            const parent: DitaElement = current._parent;
-            const siblings: DitaElement[] = parent.getChildren();
-            const index: number = siblings.indexOf(current);
-            segments.unshift(index >= 0 ? index + 1 : 1);
-            current = parent;
-        }
-        segments.unshift(1);
-        return "/" + segments.join("/");
-    }
 }

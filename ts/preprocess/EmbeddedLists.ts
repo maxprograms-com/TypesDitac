@@ -56,10 +56,6 @@ export class EmbeddedLists {
         return [...(this.targets.get(type) ?? [])];
     }
 
-    getTypes(): ListTargetType[] {
-        return [...this.targets.keys()];
-    }
-
     isEmpty(): boolean {
         for (const entries of this.targets.values()) {
             if (entries.length > 0) {
@@ -67,10 +63,6 @@ export class EmbeddedLists {
             }
         }
         return true;
-    }
-
-    getTargetIds(type: ListTargetType): string[] {
-        return this.get(type).map((target: ListTarget): string => target.targetId);
     }
 
     //TODO Define the TypesDITA list-data element contract used by the target CSS stylesheet.
