@@ -16,6 +16,7 @@ import { XMLAttribute, XMLDocument } from "typesxml";
 import { DitaElement } from "../dom/DitaElement.js";
 import { DiagnosticLog } from "../utils/DiagnosticLog.js";
 import { DitaUtils } from "../utils/DitaUtils.js";
+import { URIComponent } from "../utils/URIComponent.js";
 import { Chunk } from "./Chunk.js";
 import { DITAC_NS_URI, ENTRY_QNAMES } from "./ChunkDocumentBuilder.js";
 import { ChunkEntry, ChunkEntryType, TocType } from "./ChunkEntry.js";
@@ -144,7 +145,13 @@ export class ListsDocumentBuilder {
         const title: string = DitaUtils.getTitleTextFromChild(topicElement, true) ?? entry.navtitle ?? "???";
         const id: string = topicElement.getAttribute("id")?.getValue() ?? "";
         entryItem.setAttribute(new XMLAttribute("title", title));
-        entryItem.setAttribute(new XMLAttribute("id", id));
+        if (id.length > 0) {
+            entryItem.setAttribute(new XMLAttribute("file", entry.loadedTopic.getAncestorDocument().path));
+            entryItem.setAttribute(new XMLAttribute(
+                "targetLink",
+                "#" + URIComponent.quoteFragment(id)
+            ));
+        }
         return entryItem;
     }
 }

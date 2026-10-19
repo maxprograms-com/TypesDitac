@@ -17,6 +17,7 @@ import { DitaElement } from "../dom/DitaElement.js";
 import { DiacriticUtil } from "../utils/DiacriticUtil.js";
 import { DiagnosticLog } from "../utils/DiagnosticLog.js";
 import { DitaUtils } from "../utils/DitaUtils.js";
+import { URIComponent } from "../utils/URIComponent.js";
 import { Chunk } from "./Chunk.js";
 import { ChunkEntry, ChunkEntryType, TocType } from "./ChunkEntry.js";
 import { EmbeddedLists } from "./EmbeddedLists.js";
@@ -134,17 +135,16 @@ export class GeneratedListTopicBuilder {
 
         const topicElement: DitaElement | undefined = entry.getElement();
         let title: string;
-        let id: string;
         if (topicElement !== undefined) {
             title = DitaUtils.getTitleTextFromChild(topicElement, true) ?? entry.navtitle ?? "???";
-            id = topicElement.getAttribute("id")?.getValue() ?? "";
         } else {
             const role: string = entry.role ?? "";
             title = entry.navtitle ?? ("__AUTO__" + role + "__");
-            id = "__AUTO__" + role + "__";
         }
         tocEntry.setAttribute(new XMLAttribute("title", title));
-        tocEntry.setAttribute(new XMLAttribute("id", id));
+        if (topicElement !== undefined) {
+            this.setTargetLink(tocEntry, topicElement.getAttribute("id")?.getValue());
+        }
 
         for (const child of children) {
             tocEntry.addElement(child);
@@ -162,8 +162,9 @@ export class GeneratedListTopicBuilder {
             const formalElement: DitaElement = new DitaElement(qName);
             formalElement.setAttribute(new XMLAttribute("number", target.number ?? ""));
             formalElement.setAttribute(new XMLAttribute("title", target.title ?? ""));
-            formalElement.setAttribute(new XMLAttribute("file", resolveFile(target.sourceTopic)));
-            formalElement.setAttribute(new XMLAttribute("id", target.targetId));
+            const file: string = resolveFile(target.sourceTopic);
+            formalElement.setAttribute(new XMLAttribute("file", file));
+            this.setTargetLink(formalElement, target.targetId);
             if (target.desc !== undefined) {
                 formalElement.addElement(this.createDescription(target.desc));
             }
@@ -266,12 +267,12 @@ export class GeneratedListTopicBuilder {
             num++;
             indexAnchor.setAttribute(new XMLAttribute("number", num.toString()));
             indexAnchor.setAttribute(new XMLAttribute("file", anchor.file));
-            indexAnchor.setAttribute(new XMLAttribute("id", anchor.getId()));
+            this.setTargetLink(indexAnchor, anchor.getId());
             if (anchor instanceof IndexAnchorPair && anchor.getSource2() !== undefined) {
                 num++;
                 indexAnchor.setAttribute(new XMLAttribute("number2", num.toString()));
                 indexAnchor.setAttribute(new XMLAttribute("file2", anchor.getFile2() ?? ""));
-                indexAnchor.setAttribute(new XMLAttribute("id2", anchor.getId2() ?? ""));
+                this.setTargetLink(indexAnchor, anchor.getId2(), "targetLink2");
             }
             indexEntry.addElement(indexAnchor);
         }
@@ -307,6 +308,12 @@ export class GeneratedListTopicBuilder {
         }
 
         return indexEntry;
+    }
+
+    private setTargetLink(element: DitaElement, id: string | undefined, attributeName: string = "targetLink"): void {
+        if (id !== undefined && id.length > 0) {
+            element.setAttribute(new XMLAttribute(attributeName, "#" + URIComponent.quoteFragment(id)));
+        }
     }
 
     private createIndexRef(name: string, ref: IndexTermRef, termToId: Map<string, string>): DitaElement {

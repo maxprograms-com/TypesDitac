@@ -220,6 +220,7 @@ export class UnifiedDocumentBuilder {
             );
             if (section !== undefined) {
                 const resolved: DitaElement = DitaUtils.cloneElement(section);
+                this.removeGeneratedListFiles(resolved);
                 if (section.getName() === "ditac:toc" && listsRoot !== undefined) {
                     this.addExtendedTOC(resolved, listsRoot, section);
                 }
@@ -230,6 +231,14 @@ export class UnifiedDocumentBuilder {
             }
         }
         return DitaUtils.cloneElement(child);
+    }
+
+    private removeGeneratedListFiles(element: DitaElement): void {
+        element.removeAttribute("file");
+        element.removeAttribute("file2");
+        for (const child of element.getChildren()) {
+            this.removeGeneratedListFiles(child);
+        }
     }
 
     private addExtendedTOC(toc: DitaElement, listsRoot: DitaElement, context: DitaElement): void {
@@ -257,6 +266,7 @@ export class UnifiedDocumentBuilder {
             return undefined;
         }
         const group: DitaElement = DitaUtils.cloneElement(source);
+        this.removeGeneratedListFiles(group);
         this.prepareExtendedEntries(group, context);
         return group.getChildren().length > 0 ? group : undefined;
     }
@@ -265,8 +275,8 @@ export class UnifiedDocumentBuilder {
         const content: XMLNode[] = [];
         for (const node of parent.getContent()) {
             if (node instanceof DitaElement) {
-                const id: string = node.getAttribute("id")?.getValue() ?? "";
-                if (node.getAttribute("role")?.getValue() === "toc" && id.startsWith("__AUTO__")) {
+                const targetLink: string | undefined = node.getAttribute("targetLink")?.getValue();
+                if (node.getAttribute("role")?.getValue() === "toc" && targetLink === undefined) {
                     continue;
                 }
                 this.localizeAutoTitle(node, context);
