@@ -14,7 +14,7 @@
 
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { Catalog, SAXParser, XMLDocument } from "typesxml";
+import { Catalog, GrammarCache, SAXParser, XMLDocument } from "typesxml";
 import { DitaDOMBuilder } from "../dom/DitaDOMBuilder.js";
 import { DiagnosticLog } from "../utils/DiagnosticLog.js";
 import { DitaUtils } from "../utils/DitaUtils.js";
@@ -26,6 +26,7 @@ export class LoadDocument {
 
     readonly catalog: Catalog;
     private readonly diagnostics: DiagnosticLog;
+    private readonly grammarCache: GrammarCache = new GrammarCache();
 
     constructor(diagnostics: DiagnosticLog, catalog: Catalog = new Catalog(LoadDocument.DEFAULT_CATALOG)) {
         this.catalog = catalog;
@@ -56,6 +57,7 @@ export class LoadDocument {
         const parser: SAXParser = new SAXParser();
         parser.setContentHandler(builder);
         parser.setCatalog(this.catalog);
+        parser.setGrammarCache(this.grammarCache);
         parser.setValidating(validate);
         parser.parseString(source);
         const document: XMLDocument | undefined = builder.getDocument();
@@ -70,6 +72,7 @@ export class LoadDocument {
         const parser: SAXParser = new SAXParser();
         parser.setContentHandler(builder);
         parser.setCatalog(this.catalog);
+        parser.setGrammarCache(this.grammarCache);
         parser.setValidating(validate);
         parser.parseFile(filePath);
         const document: XMLDocument | undefined = builder.getDocument();

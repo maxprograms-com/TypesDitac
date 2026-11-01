@@ -1,6 +1,6 @@
 {
   "name": "typesditac",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Generates a unified XML document from a DITA map and its topics",
   "keywords": [
     "dita",
@@ -54,6 +54,6 @@
     "markdown-it-ins": "^4.0.0",
     "parse5": "^8.0.1",
     "typesbcp47": "^1.26.2",
-    "typesxml": "^2.7.1"
+    "typesxml": "^2.8.0"
   }
 }
