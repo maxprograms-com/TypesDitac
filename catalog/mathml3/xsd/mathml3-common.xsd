@@ -19,7 +19,7 @@
       <xs:attribute name="style" type="xs:string"/>
       <xs:attribute name="href" type="xs:anyURI"/>
       <xs:attributeGroup ref="m:CommonDeprecatedAtt"/>
-      <xs:anyAttribute namespace="##other" processContents="skip"/>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
    </xs:attributeGroup>
    <xs:attributeGroup name="math.deprecatedattributes">
       <xs:attribute name="mode" type="xs:string"/>
@@ -39,11 +39,9 @@
          <xs:attributeGroup ref="m:annotation.attributes"/>
       </xs:complexType>
    </xs:element>
-   <xs:complexType name="annotation-xml.model">
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-         <xs:group ref="m:MathExpression"/>
-         <xs:group ref="m:anyElement"/>
-      </xs:choice>
+   <xs:complexType name="annotation-xml.model"><!--content model altered for libxml (annotation-xml)--><xs:sequence>
+         <xs:any processContents="lax"/>
+      </xs:sequence>
    </xs:complexType>
    <xs:group name="anyElement">
       <xs:choice>

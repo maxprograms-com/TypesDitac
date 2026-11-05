@@ -25,7 +25,7 @@
 
 	<nextCatalog catalog="mathml2/catalog.xml" />
 	<nextCatalog catalog="mathml3/catalog.xml" />
-	
+	<nextCatalog catalog="mathml4/catalog.xml" />	
 
 
 	<!--    DocBook ISO entity mirrors    -->

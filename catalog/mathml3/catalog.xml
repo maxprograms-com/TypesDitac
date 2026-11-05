@@ -1,9 +1,31 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
-    <uri name="http://www.w3.org/Math/RelaxNG/mathml3/mathml3.rnc" uri="rnc/mathml3.rnc"/>
-    <uri name="http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd" uri="xsd/mathml3.xsd"/>
-    <uri name="http://www.w3.org/Math/DTD/mathml3/mathml3.dtd" uri="dtd/mathml3.dtd"/>
-    <system systemId="http://www.w3.org/Math/DTD/mathml3/mathml3.dtd" uri="dtd/mathml3.dtd"/>
-    <rewriteSystem systemIdStartString="http://www.w3.org/Math/DTD/mathml3/" rewritePrefix="dtd/"/>
-    <rewriteSystem systemIdStartString="http://www.w3.org/TR/MathML3/dtd/" rewritePrefix="dtd/"/>
+    <!-- MathML 3.0 DTD -->
     <public publicId="-//W3C//DTD MathML 3.0//EN" uri="dtd/mathml3.dtd"/>
+    <system systemId="mathml3.dtd" uri="dtd/mathml3.dtd"/>
+    
+    <!-- MathML 3.0 Qualified Names -->
+    <public publicId="-//W3C//ENTITIES MathML 3.0 Qualified Names 1.0//EN" uri="dtd/mathml3-qname.mod"/>
+    <system systemId="mathml3-qname.mod" uri="dtd/mathml3-qname.mod"/>
+    <!-- HTML MathML Set -->
+    <public publicId="-//W3C//ENTITIES HTML MathML Set//EN//XML" uri="dtd/htmlmathml-f.ent"/>
+    <public publicId="web-entities" uri="dtd/htmlmathml-f.ent"/>
+    <system systemId="htmlmathml-f.ent" uri="dtd/htmlmathml-f.ent"/>
+    <system systemId="http://www.w3.org/2003/entities/2007/htmlmathml-f.ent" uri="dtd/htmlmathml-f.ent"/>
+    
+    <!-- MathML 3.0 namespace URI -->
+    <uri name="http://www.w3.org/1998/Math/MathML" uri="xsd/mathml3.xsd"/>
+    
+    <!-- MathML 3.0 XSD schemas -->
+    <system systemId="mathml3.xsd" uri="xsd/mathml3.xsd"/>
+    <system systemId="mathml3-common.xsd" uri="xsd/mathml3-common.xsd"/>
+    <system systemId="mathml3-content.xsd" uri="xsd/mathml3-content.xsd"/>
+    <system systemId="mathml3-strict-content.xsd" uri="xsd/mathml3-strict-content.xsd"/>
+    <system systemId="mathml3-presentation.xsd" uri="xsd/mathml3-presentation.xsd"/>
+    
+    <!-- MathML 3.0 RNG schemas -->
+    <system systemId="mathml3.rng" uri="rng/mathml3.rng"/>
+    <system systemId="mathml3-common.rng" uri="rng/mathml3-common.rng"/>
+    <system systemId="mathml3-content.rng" uri="rng/mathml3-content.rng"/>
+    <system systemId="mathml3-strict-content.rng" uri="rng/mathml3-strict-content.rng"/>
+    <system systemId="mathml3-presentation.rng" uri="rng/mathml3-presentation.rng"/>
 </catalog>

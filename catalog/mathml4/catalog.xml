@@ -1,0 +1,31 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+    <!-- MathML 4.0 DTD -->
+    <public publicId="-//W3C//DTD MathML 4.0//EN" uri="dtd/mathml4.dtd"/>
+    <system systemId="mathml4.dtd" uri="dtd/mathml4.dtd"/>
+    
+    <!-- MathML 4.0 Qualified Names -->
+    <public publicId="-//W3C//ENTITIES MathML 4.0 Qualified Names 1.0//EN" uri="dtd/mathml4-qname.mod"/>
+    <system systemId="mathml4-qname.mod" uri="dtd/mathml4-qname.mod"/>
+    <!-- HTML MathML Set -->
+    <public publicId="-//W3C//ENTITIES HTML MathML Set//EN//XML" uri="dtd/htmlmathml-f.ent"/>
+    <public publicId="web-entities" uri="dtd/htmlmathml-f.ent"/>
+    <system systemId="htmlmathml-f.ent" uri="dtd/htmlmathml-f.ent"/>
+    <system systemId="http://www.w3.org/2003/entities/2007/htmlmathml-f.ent" uri="dtd/htmlmathml-f.ent"/>
+    
+    <!-- MathML 4.0 namespace URI -->
+    <uri name="http://www.w3.org/1998/Math/MathML" uri="xsd/mathml4.xsd"/>
+    
+    <!-- MathML 4.0 XSD schemas -->
+    <system systemId="mathml4.xsd" uri="xsd/mathml4.xsd"/>
+    <system systemId="mathml4-content.xsd" uri="xsd/mathml4-content.xsd"/>
+    <system systemId="mathml4-strict-content.xsd" uri="xsd/mathml4-strict-content.xsd"/>
+    <system systemId="mathml4-presentation.xsd" uri="xsd/mathml4-presentation.xsd"/>
+    
+    <!-- MathML 4.0 RNG schemas -->
+    <system systemId="mathml4.rng" uri="rng/mathml4.rng"/>
+    <system systemId="mathml4-core.rng" uri="rng/mathml4-core.rng"/>
+    <system systemId="mathml4-content.rng" uri="rng/mathml4-content.rng"/>
+    <system systemId="mathml4-strict-content.rng" uri="rng/mathml4-strict-content.rng"/>
+    <system systemId="mathml4-presentation.rng" uri="rng/mathml4-presentation.rng"/>
+    <system systemId="mathml4-legacy.rng" uri="rng/mathml4-legacy.rng"/>
+</catalog>
